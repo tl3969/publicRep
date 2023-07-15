@@ -1,0 +1,1 @@
+ALTER TABLE hs_prepayment ADD COLUMN partial_repayment_categories VARCHAR(10);
