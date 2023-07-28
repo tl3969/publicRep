@@ -1,0 +1,2 @@
+ALTER TABLE hs_work_order ALTER  column work_type set default '0';
+update hs_work_order  set work_type ='0' where work_type is null;
