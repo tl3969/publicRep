@@ -1,0 +1,16 @@
+  "core":{
+        "transport":{
+            "channel":{
+                "speed":{
+                    "record":100,
+                    "byte":1048576,
+                    "batchSize":204
+                }
+            }
+        }
+    },
+    
+    
+          "channel":2,
+          "record":500,
+          "byte":1048576
