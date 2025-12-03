@@ -26,10 +26,10 @@ type ServerConfig struct {
 func Load() *Config {
 	return &Config{
 		Database: DatabaseConfig{
-			Host:     "8.134.63.171",
+			Host:     "8.134.63.11",
 			Port:     "3306",
 			User:     "root",
-			Password: "Tl#396900",
+			Password: "11111",
 			Name:     "golang_system",
 		},
 		JWT: JWTConfig{
