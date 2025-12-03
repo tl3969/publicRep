@@ -18,6 +18,14 @@ func NewArticleController() *ArticleController {
 	return &ArticleController{DB: database.DB}
 }
 
+// @CreateArticle
+// @Description CreateArticle
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   req      body   models.CreateArticleRequest     true        "req"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/articles [post]
 func (ac *ArticleController) CreateArticle(c *gin.Context) {
 	userID := c.MustGet("user_id").(uint)
 
@@ -47,6 +55,13 @@ func (ac *ArticleController) CreateArticle(c *gin.Context) {
 	})
 }
 
+// @GetArticles
+// @Description GetArticles
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/articles [get]
 func (ac *ArticleController) GetArticles(c *gin.Context) {
 	var articles []models.Article
 
@@ -58,6 +73,14 @@ func (ac *ArticleController) GetArticles(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"articles": articles})
 }
 
+// @GetArticle
+// @Description GetArticle
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   id     path    int     true        "id"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/articles/{id} [get]
 func (ac *ArticleController) GetArticle(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -78,6 +101,15 @@ func (ac *ArticleController) GetArticle(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"article": article})
 }
 
+// @UpdateArticle
+// @Description UpdateArticle
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   id     path    int     true        "id"
+// @Param   req     body    models.UpdateArticleRequest     true        "UpdateArticleRequest"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/articles/{id} [put]
 func (ac *ArticleController) UpdateArticle(c *gin.Context) {
 	userID := c.MustGet("user_id").(uint)
 	articleID, err := strconv.Atoi(c.Param("id"))
@@ -126,6 +158,14 @@ func (ac *ArticleController) UpdateArticle(c *gin.Context) {
 	})
 }
 
+// @DeleteArticle
+// @Description DeleteArticle
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   id     path    int     true        "id"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/articles/{id} [delete]
 func (ac *ArticleController) DeleteArticle(c *gin.Context) {
 	userID := c.MustGet("user_id").(uint)
 	articleID, err := strconv.Atoi(c.Param("id"))

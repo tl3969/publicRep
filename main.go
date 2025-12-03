@@ -6,11 +6,19 @@ import (
 	"golang_system/database"
 	"golang_system/middleware"
 	"log"
+
+	_ "golang_system/docs"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title 博客系统
+// @version 0.0.1
+// @description  微服务 code  by 田发亮
+// @BasePath /
 func main() {
 	// 加载配置
 	cfg := config.Load()
@@ -67,7 +75,11 @@ func main() {
 			comments.GET("/:articleId", commentController.GetArticleComments)
 		}
 	}
-
+	// http://127.0.0.1:8080/swagger/index.html
+	// 仅在开发环境启用
+	if gin.Mode() != gin.ReleaseMode {
+		r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	}
 	// 启动服务器
 	log.Printf("Server starting on port %s", cfg.Server.Port)
 	if err := r.Run(":" + cfg.Server.Port); err != nil {

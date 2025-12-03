@@ -18,6 +18,15 @@ func NewCommentController() *CommentController {
 	return &CommentController{DB: database.DB}
 }
 
+// @CreateComment
+// @Description CreateComment
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   articleId     path    int     true        "articleId"
+// @Param   req     body    models.CreateCommentRequest    true        "req"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/comments/{articleId} [post]
 func (cc *CommentController) CreateComment(c *gin.Context) {
 	userID := c.MustGet("user_id").(uint)
 	articleID, err := strconv.Atoi(c.Param("articleId"))
@@ -63,6 +72,14 @@ func (cc *CommentController) CreateComment(c *gin.Context) {
 	})
 }
 
+// @GetArticleComments
+// @Description GetArticleComments
+// @Accept  json
+// @Produce json
+// @Param Authorization header string true "Bearer token" default(Bearer )
+// @Param   articleId     path    int     true        "articleId"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/comments/{articleId} [get]
 func (cc *CommentController) GetArticleComments(c *gin.Context) {
 	articleID, err := strconv.Atoi(c.Param("articleId"))
 	if err != nil {

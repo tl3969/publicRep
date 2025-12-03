@@ -18,6 +18,13 @@ func NewAuthController() *AuthController {
 	return &AuthController{DB: database.DB}
 }
 
+// @Register
+// @Description Register
+// @Accept  json
+// @Produce json
+// @Param  req body models.RegisterRequest true "req"
+// @Success 200 {string} string	"username,helloWorld"
+// @Router /api/auth/register [post]
 func (ac *AuthController) Register(c *gin.Context) {
 	var req models.RegisterRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -67,6 +74,13 @@ func (ac *AuthController) Register(c *gin.Context) {
 	})
 }
 
+// @Login
+// @Description Login
+// @Accept  json
+// @Produce json
+// @Param   req     body    models.LoginRequest     true        "req"
+// @Success 200 {string} string	"name,helloWorld"
+// @Router /api/auth/login [post]
 func (ac *AuthController) Login(c *gin.Context) {
 	var req models.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
